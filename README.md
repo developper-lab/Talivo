@@ -1,5 +1,1 @@
 # Talivo
-
-
-
-Poshel nahui PHILON
