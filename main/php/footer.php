@@ -1,9 +1,0 @@
-<footer>
-    ФУТЕР
-</footer>
-
-<script src="../js/main.js"></script>
-<script src="../js/search.js"></script>
-</body>
-
-</html>
