@@ -73,12 +73,12 @@ document.addEventListener('click', function (event) {
 const searchInput = document.querySelector('input[type="search"]');
 const searchButton = document.querySelector('.btn_search');
 
-searchButton.addEventListener('click', function () {
-    if (searchInput.value.trim() !== '') {
-        alert('Поиск: ' + searchInput.value);
-        searchInput.value = '';
-    }
-});
+// searchButton.addEventListener('click', function () {
+//     if (searchInput.value.trim() !== '') {
+//         alert('Поиск: ' + searchInput.value);
+//         searchInput.value = '';
+//     }
+// });
 
 searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
