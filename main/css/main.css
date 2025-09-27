@@ -244,6 +244,7 @@ p {
 
 .card {
     max-width: 350px;
+    height: 400px;
     width: 100%;
     border: 1px solid #000;
     border-radius: 5px;
@@ -255,10 +256,11 @@ p {
 
 .card-img img {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: cover;
     border: 1px solid #000;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .card-body {

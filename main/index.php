@@ -39,7 +39,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <span class="rate"><?php echo htmlspecialchars($card['rating']) ?></span>
                         <span class="count"><?php echo htmlspecialchars($card['count']) ?> оценок</span>
                     </div>
-                    <button class="btn">Заказать</button>
+                    <button class="btn" onclick="window.location.href='php/product.php?id=<?php echo htmlspecialchars($card['id']) ?>'">Заказать</button>
                 </div>
             </div>
         <?php endforeach; ?>
