@@ -9,10 +9,10 @@ include '../main/header.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $title = $_POST['title'] ?? '';
-    $description = $_POST['description'] ?? '';
     $price = $_POST['price'] ?? '';
 
-    if (!$title || !$description || !$price) {
+
+    if (!$title || !$price) {
         $error = "Все поля должны быть заполнены.";
     } elseif (!is_numeric($price)) {
         $error = "Цена должна быть числом.";
@@ -37,8 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (move_uploaded_file($image['tmp_name'], $uploadPath)) {
                 // Сохраняем в базу
-                $stmt = $pdo->prepare("INSERT INTO posts (title, description, price, image, seller_id, rating, count) VALUES (?, ?, ?, ?, ?, 0, 0)");
-                $stmt->execute([$title, $description, $price, $newName, $_SESSION['seller_id']]);
+                $stmt = $pdo->prepare("
+                    INSERT INTO posts (title, price, image,user_id, rating, count)
+                    VALUES (?, ?, ?,?, 0, 0)
+                ");
+                $stmt->execute([
+                    $title,
+                    $price,
+                    $newName,
+                    $_SESSION['user_id']
+                ]);
+
                 $success = "Объявление успешно создано!";
             } else {
                 $error = "Ошибка при сохранении изображения.";
@@ -48,24 +57,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="ru">
+<main>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-<head>
-    <meta charset="UTF-8">
-    <title>Создать объявление</title>
-</head>
+        label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
 
-<body>
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            max-width: 500px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
     <h1>Создать объявление</h1>
 
     <?php if (!empty($error)): ?>
-        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+        <div class="message error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
     <?php if (!empty($success)): ?>
-        <p style="color:green;"><?= htmlspecialchars($success) ?></p>
+        <div class="message success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
+
 
     <form action="" method="post" enctype="multipart/form-data">
         <label>Заголовок:<br>
@@ -84,12 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="file" name="image" accept="image/*">
         </label><br><br>
 
+
+
         <button type="submit">Создать объявление</button>
     </form>
 
-    <p><a href="../index.php">Назад на главную</a></p>
-</body>
-
-</html>
-
+    <p><a href="<?= BASE_URL ?>">Назад на главную</a></p>
+</main>
 <?php include '../main/footer.php';

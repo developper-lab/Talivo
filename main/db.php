@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost:3306';
-$dbname = 'talivo';
+$dbname = 'tal';
 $user = 'root';
 $password = '';
 
