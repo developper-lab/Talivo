@@ -1,0 +1,464 @@
+/* --- Полный адаптив (обновленный) --- */
+
+/* XXL / крупные мониторы */
+@media (max-width: 1400px) {
+    .promo-title {
+        font-size: 42px;
+    }
+
+    .promo-description {
+        font-size: 22px;
+    }
+
+    .cards {
+        gap: 18px;
+    }
+
+    .card-img img {
+        height: 240px;
+    }
+}
+
+/* Large / 1200px */
+@media (max-width: 1200px) {
+
+    .header_top-menu,
+    .header_main {
+        padding: 10px 5%;
+    }
+
+    .promo-container {
+        gap: 25px;
+    }
+
+    .promo-title {
+        font-size: 38px;
+    }
+
+    .promo-description {
+        font-size: 20px;
+    }
+
+    .cards {
+        gap: 16px;
+    }
+
+    .card-img img {
+        height: 220px;
+    }
+
+    .header_main {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+
+    .header_main-left,
+    .header_main-center-search,
+    .header_main-nav-list {
+        width: 100%;
+    }
+
+    .header_main-center-search {
+        padding: 12px 20px;
+    }
+}
+
+/* Medium / 992px */
+@media (max-width: 992px) {
+
+    .header_main-left,
+    .header_main-nav-list {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .main {
+        margin: 0 50px;
+    }
+
+    .promo-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 15px;
+    }
+
+    .promo-title {
+        font-size: 32px;
+    }
+
+    .promo-description {
+        font-size: 18px;
+    }
+
+    .promo-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .cards {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 15px;
+        margin: 30px 90px;
+
+    }
+
+    .card-body {
+        align-items: center;
+    }
+
+    .card {
+        max-width: 48%;
+    }
+}
+
+/* Small / 768px */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .promo-title {
+        font-size: 28px;
+    }
+
+    .promo-description {
+        font-size: 16px;
+    }
+
+    .promo-button {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+
+    .container {
+        margin: 0 40px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 60px;
+    }
+
+    .card {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .card-img img {
+        height: 200px;
+        width: 100%;
+    }
+
+    .header_main-left,
+    .header_main-nav-list {
+        width: 100%;
+    }
+
+    .header_main-center-search {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    .card-body {
+        align-items: center;
+    }
+
+    .footer {
+        gap: 20px;
+    }
+}
+
+/* Extra small / 576px */
+@media (max-width: 576px) {
+    body {
+        font-size: 16px;
+    }
+
+    .main {
+        margin: 0;
+    }
+
+    .promo-title {
+        font-size: 24px;
+    }
+
+    .promo-description {
+        font-size: 14px;
+    }
+
+    .promo-button {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+
+    .card {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .card-img img {
+        height: 180px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .rating {
+        font-size: 16px;
+    }
+
+    .header_top-menu-list,
+    .header_main-nav-list {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* XXS / 480px и меньше */
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    .promo-title {
+        font-size: 20px;
+    }
+
+    .promo-description {
+        font-size: 12px;
+    }
+
+    .promo-button {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+
+    .cards {
+        gap: 10px;
+        margin: 0;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+
+    .card-img img {
+        height: 150px;
+    }
+
+    .header_main-left,
+    .header_main-nav-list,
+    .header_main-center-search {
+        width: 100%;
+    }
+}
+
+/* --- Safari Fixes for all breakpoints --- */
+@supports (-webkit-touch-callout: none) {
+
+    /* XXL / крупные мониторы */
+    @media (max-width: 1400px) {
+        .promo-title {
+            font-size: 42px;
+        }
+
+        .promo-description {
+            font-size: 22px;
+        }
+
+        .cards {
+            gap: 18px;
+            margin-left: -9px;
+        }
+
+        .cards>.card {
+            margin-left: 9px;
+            margin-bottom: 9px;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            -webkit-backface-visibility: hidden;
+        }
+    }
+
+    /* Large / 1200px */
+    @media (max-width: 1200px) {
+        .promo-title {
+            font-size: 38px;
+        }
+
+        .promo-description {
+            font-size: 20px;
+        }
+
+        .cards {
+            gap: 16px;
+            margin-left: -8px;
+        }
+
+        .cards>.card {
+            margin-left: 8px;
+            margin-bottom: 8px;
+        }
+
+        .card-img img {
+            height: 220px;
+        }
+    }
+
+    /* Medium / 992px */
+    @media (max-width: 992px) {
+        .promo-title {
+            font-size: 32px;
+        }
+
+        .promo-description {
+            font-size: 18px;
+        }
+
+        .cards {
+            gap: 15px;
+            margin: 30px 90px;
+            margin-left: -7px;
+        }
+
+        .cards>.card {
+            margin-left: 7px;
+            margin-bottom: 7px;
+        }
+
+        .card-img img {
+            height: auto;
+        }
+    }
+
+    /* Small / 768px */
+    @media (max-width: 768px) {
+        body {
+            font-size: 18px;
+        }
+
+        .promo-title {
+            font-size: 28px;
+        }
+
+        .promo-description {
+            font-size: 16px;
+        }
+
+        .promo-button {
+            font-size: 16px;
+            padding: 10px 25px;
+        }
+
+        .cards {
+            gap: 12px;
+            margin: 20px 60px;
+            margin-left: -6px;
+        }
+
+        .cards>.card {
+            margin-left: 6px;
+            margin-bottom: 6px;
+        }
+
+        .card-img img {
+            height: 200px;
+        }
+    }
+
+    /* Extra small / 576px */
+    @media (max-width: 576px) {
+        body {
+            font-size: 16px;
+        }
+
+        .promo-title {
+            font-size: 24px;
+        }
+
+        .promo-description {
+            font-size: 14px;
+        }
+
+        .promo-button {
+            font-size: 14px;
+            padding: 8px 20px;
+        }
+
+        .cards {
+            gap: 10px;
+            margin-left: -5px;
+        }
+
+        .cards>.card {
+            margin-left: 5px;
+            margin-bottom: 5px;
+        }
+
+        .card-img img {
+            height: 180px;
+        }
+    }
+
+    /* XXS / 480px и меньше */
+    @media (max-width: 480px) {
+        body {
+            font-size: 15px;
+        }
+
+        .promo-title {
+            font-size: 20px;
+        }
+
+        .promo-description {
+            font-size: 12px;
+        }
+
+        .promo-button {
+            font-size: 12px;
+            padding: 6px 15px;
+        }
+
+        .cards {
+            gap: 8px;
+            margin-left: -4px;
+        }
+
+        .cards>.card {
+            margin-left: 4px;
+            margin-bottom: 4px;
+        }
+
+        .card-img img {
+            height: 150px;
+        }
+    }
+
+    /* общий фикс для картинок и текста */
+    .card-img img {
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        object-fit: cover;
+    }
+
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    .header_main {
+        -webkit-overflow-scrolling: touch;
+    }
+}
