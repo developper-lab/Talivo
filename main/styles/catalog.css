@@ -1,0 +1,165 @@
+.catalogs {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.filter-box {
+    width: 280px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    font-family: "Inter", sans-serif;
+}
+
+.filter-section {
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #000000;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+}
+
+.filter-section h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.price-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.price-inputs input {
+    width: 100%;
+    min-height: 45px;
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #f5f5f5;
+}
+
+.radio-item input[type="radio"] {
+    display: none;
+}
+
+.radio-item span {
+    position: relative;
+    padding-left: 26px;
+    display: inline-block;
+}
+
+.radio-item span::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid #bbb;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    transition: 0.2s;
+}
+
+.radio-item span::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.radio-item input[type="radio"]:checked+span::after {
+    opacity: 1;
+}
+
+.radio-item input[type="radio"]:checked+span::before {
+    border-color: #4ade80;
+}
+
+.radio-item input[type="radio"]:checked~span {
+    font-weight: 600;
+}
+
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.green {
+    background: #28c323;
+}
+
+.dot.black {
+    background: #000;
+}
+
+.dot.red {
+    background: #e70000;
+}
+
+.dot.blue {
+    background: #0048ff;
+}
+
+.dot.silver {
+    background: #d1d1d1;
+}
+
+.dot.gold {
+    background: #f6c700;
+}
+
+.dot.wood {
+    background: #b78a58;
+}
+
+.more {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6a6a6a;
+}
+
+
+
+
+
+.cards {
+    margin: 0;
+    flex-wrap: nowrap;
+}
