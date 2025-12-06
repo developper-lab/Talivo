@@ -42,17 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom('uzvenko27@gmail.com', 'ЭЛИТДОМ');
+        $mail->setFrom('uzvenko27@gmail.com', 'Talivo');
         $mail->addAddress($email, $username);
 
         $mail->isHTML(true);
         $mail->Subject = 'Активация аккаунта';
         $mail->Body    = "Привет, {$username}!<br>
                          Для активации аккаунта перейдите по ссылке:<br>
-                         <a href='http://talivo.local/seting/activate.php?code={$activation_code}'>Активировать аккаунт</a>";
+                         <a href='http://localhost/seting/activate.php?code={$activation_code}'>Активировать аккаунт</a>";
         $mail->AltBody = "Привет, {$username}!\n
                          Для активации аккаунта перейдите по ссылке:\n
-                         http://talivo.local/seting/activate.php?code={$activation_code}";
+                         http://localhost/seting/activate.php?code={$activation_code}";
 
         $mail->send();
         echo 'Регистрация прошла успешно! Проверьте почту для активации. <a href="../../index.php">Домой</a>';
