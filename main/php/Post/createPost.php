@@ -3,6 +3,8 @@ session_start();
 include '../../db.php';
 include '../main/header.php';
 ?>
+<link rel="stylesheet" href="<?= BASE_URL ?>styles/createPost.css">
+
 <?php
 
 // Обработка формы
@@ -10,7 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $title = $_POST['title'] ?? '';
     $price = $_POST['price'] ?? '';
+    $category = $_POST['category'] ?? '';
+    $delivery = $_POST['delivery'] ?? '';
 
+    if (!$category || !$delivery) {
+        $error = "Выберите категорию и срок доставки.";
+    }
 
     if (!$title || !$price) {
         $error = "Все поля должны быть заполнены.";
@@ -38,15 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($image['tmp_name'], $uploadPath)) {
                 // Сохраняем в базу
                 $stmt = $pdo->prepare("
-                    INSERT INTO posts (title, price, image,user_id, rating, count)
-                    VALUES (?, ?, ?,?, 0, 0)
+                    INSERT INTO posts (title, description, price, image, user_id, category, delivery, rating, count)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)  
+
                 ");
                 $stmt->execute([
                     $title,
+                    $_POST['description'],
                     $price,
                     $newName,
-                    $_SESSION['user_id']
+                    $_SESSION['user_id'],
+                    $category,
+                    $delivery
                 ]);
+
 
                 $success = "Объявление успешно создано!";
             } else {
@@ -57,82 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main>
-    <style>
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+<main class="main">
 
-        label {
-            display: block;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #218838;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .message {
-            max-width: 500px;
-            margin: 0 auto 20px;
-            padding: 15px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-
-        .message.success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-    </style>
     <h1>Создать объявление</h1>
 
     <?php if (!empty($error)): ?>
@@ -162,6 +100,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label><br><br>
 
 
+        <label>Категория:<br>
+            <select name="category" required>
+                <option value="" disabled>Выберите категорию</option>
+
+                <option value="jewelry">Украшения и аксессуары</option>
+                <option value="clothes">Одежда и текстиль</option>
+                <option value="decor">Домашний декор</option>
+                <option value="wood">Деревянные изделия</option>
+                <option value="ceramics">Керамика и глина</option>
+                <option value="art">Картины и арт-объекты</option>
+                <option value="cosmetics">Косметика ручной работы</option>
+                <option value="food">Еда и выпечка</option>
+                <option value="gifts">Подарочные наборы</option>
+                <option value="tools">Инструменты и материалы</option>
+
+            </select>
+        </label>
+        <br><br>
+
+        <label>Срок доставки:</label>
+        <div class="delivery-block">
+            <label class="delivery-item">
+                <input type="radio" name="delivery" value="today" required> Сегодня
+            </label>
+
+            <label class="delivery-item">
+                <input type="radio" name="delivery" value="1-3"> 1–3 дня
+            </label>
+
+            <label class="delivery-item">
+                <input type="radio" name="delivery" value="7"> До 7 дней
+            </label>
+
+            <label class="delivery-item">
+                <input type="radio" name="delivery" value="any"> Любой
+            </label>
+        </div>
+        <br>
 
         <button type="submit">Создать объявление</button>
     </form>

@@ -2,11 +2,12 @@
 session_start();
 include '../db.php';
 include 'main/header.php';
-$sql = "SELECT * FROM posts";
+$sql = "SELECT * FROM posts ORDER BY rating DESC, count DESC LIMIT 8";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<link rel="stylesheet" href="<?= BASE_URL ?>styles/catalog.css">
 
 <main class="main catalogs">
     <section class="filter-box">

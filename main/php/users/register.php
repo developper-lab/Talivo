@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom('uzvenko27@gmail.com', 'ЭЛИТДОМ');
+        $mail->setFrom('uzvenko27@gmail.com', 'Talivo');
         $mail->addAddress($email, $username);
 
         $mail->isHTML(true);

@@ -14,8 +14,6 @@ define("BASE_URL", "http://talivo.local/");
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/account.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/post.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/adaptiv.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>styles/catalog.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>styles/createPost.css">
 
 
 
