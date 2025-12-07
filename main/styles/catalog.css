@@ -5,7 +5,6 @@
 }
 
 .filter-box {
-    width: 280px;
     padding: 20px;
     background: #fff;
     border-radius: 18px;
@@ -161,5 +160,5 @@ label {
 
 .cards {
     margin: 0;
-    flex-wrap: nowrap;
+    justify-content: center;
 }
