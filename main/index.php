@@ -3,9 +3,25 @@ session_start();
 include 'db.php';
 include 'php/main/header.php';
 
-$sql = "SELECT * FROM posts ORDER BY rating DESC, count DESC LIMIT 8";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
+$currentUser = $_SESSION['user_id'] ?? null;
+
+// Если юзер авторизован — не показываем его товары
+if ($currentUser) {
+    $sql = "SELECT * FROM posts 
+            WHERE user_id != :uid 
+            ORDER BY rating DESC, count DESC 
+            LIMIT 8";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['uid' => $currentUser]);
+} else {
+    // Если гость — показываем всё как раньше
+    $sql = "SELECT * FROM posts 
+            ORDER BY rating DESC, count DESC 
+            LIMIT 8";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+}
+
 $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <main class="main">
