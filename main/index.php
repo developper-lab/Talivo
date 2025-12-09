@@ -29,13 +29,13 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="promo-container">
             <div class="promo-content">
                 <div class="top">
-                    <h1 class="promo-title">Всегда свежие молочные продукты</h1>
+                    <h1 class="promo-title">Всегда качественнык продукты</h1>
                     <p class="promo-description">Только качественные товары, за которыми мы всегда следим</p>
                 </div>
                 <a href="#" class="promo-button">Подробнее</a>
             </div>
             <div class="promo-image">
-                <img src="images/promo_car.png" alt="Доставка молочных продуктов">
+                <img src="images/promo_image.png" alt="Доставка молочных продуктов">
             </div>
         </div>
     </section>
