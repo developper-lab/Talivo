@@ -166,7 +166,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <?php echo htmlspecialchars($card['rating']) ?>
                                 </span>
                                 <span class="count">
-                                    <?php echo htmlspecialchars($card['count']) ?>
+                                    (отзывов: <?php echo htmlspecialchars($card['count']) ?>)
                                 </span>
                             </div>
                             <button class="btn" type="submit" onclick="window.location.href='Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">

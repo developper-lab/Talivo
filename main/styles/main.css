@@ -177,7 +177,7 @@ a {
 
 
 .promo-title {
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
@@ -326,7 +326,7 @@ a {
     /* фиксированная высота, чтобы все одинаково */
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     background-color: #fff;
@@ -344,7 +344,6 @@ a {
 .card-body {
     display: flex;
     flex-direction: column;
-    gap: 5px;
     margin-top: 10px;
     flex-grow: 1;
     /* тело карточки растягивается */
@@ -375,6 +374,7 @@ a {
     gap: 5px;
     font-size: 20px;
     color: #000;
+    margin-bottom: auto;
     /* черный текст */
 }
 
@@ -394,7 +394,7 @@ a {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s linear;
-    margin-top: auto;
+    margin-top: 5px;
     /* кнопки прижаты к низу */
 }
 

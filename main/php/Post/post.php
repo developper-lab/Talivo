@@ -45,6 +45,7 @@ if (isset($_GET['id'])) {
 include BASE_PATH . '/main/header.php';
 ?>
 
+<link rel="stylesheet" href="<?= BASE_URL ?>styles/post.css">
 
 <main>
     <?php if ($card): ?>

@@ -29,7 +29,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="promo-container">
             <div class="promo-content">
                 <div class="top">
-                    <h1 class="promo-title">Всегда качественнык продукты</h1>
+                    <h1 class="promo-title">Всегда качественные продукты</h1>
                     <p class="promo-description">Только качественные товары, за которыми мы всегда следим</p>
                 </div>
                 <a href="#" class="promo-button">Подробнее</a>
@@ -65,7 +65,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <?php echo htmlspecialchars($card['rating']) ?>
                             </span>
                             <span class="count">
-                                (<?php echo htmlspecialchars($card['count']) ?>)
+                                (отзывов: <?php echo htmlspecialchars($card['count']) ?>)
                             </span>
                         </div>
                         <button class="btn" type="button" onclick="window.location.href='php/Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">
