@@ -85,6 +85,70 @@
     background-color: #1f7a3e;
 }
 
+.reviews-carousel {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px 0;
+    /* оставляем только вертикальный паддинг */
+}
+
+.reviews-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.review-slide {
+    min-width: 100%;
+    padding: 15px 40px;
+    /* переносим горизонтальный padding сюда */
+    box-sizing: border-box;
+    word-wrap: break-word;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+
+.review-slide p {
+    margin-top: 8px;
+}
+
+.stars {
+    color: gold;
+    margin: 5px 0;
+    font-size: 22px;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+
+
+
 /* --- Адаптив --- */
 @media (max-width: 992px) {
     .product {
