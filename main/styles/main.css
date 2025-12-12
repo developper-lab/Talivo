@@ -472,3 +472,45 @@ footer {
     margin: 0;
     padding: 0;
 }
+
+
+.categories-section {
+    margin-top: 50px;
+}
+
+.categories-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px;
+    background: #fff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: .2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cat-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}

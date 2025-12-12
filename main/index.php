@@ -79,6 +79,62 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </div>
     </section>
+    <section class="categories-section">
+        <h2 class="categories-title">Категории</h2>
+
+        <div class="category-cards">
+            <a href="php/catalog.php?category=jewelry" class="category-card">
+                <div class="cat-icon">💍</div>
+                <span>Украшения и аксессуары</span>
+            </a>
+
+            <a href="php/catalog.php?category=clothes" class="category-card">
+                <div class="cat-icon">👗</div>
+                <span>Одежда и текстиль</span>
+            </a>
+
+            <a href="php/catalog.php?category=decor" class="category-card">
+                <div class="cat-icon">🏠</div>
+                <span>Домашний декор</span>
+            </a>
+
+            <a href="php/catalog.php?category=wood" class="category-card">
+                <div class="cat-icon">🪵</div>
+                <span>Деревянные изделия</span>
+            </a>
+
+            <a href="php/catalog.php?category=ceramics" class="category-card">
+                <div class="cat-icon">🏺</div>
+                <span>Керамика и глина</span>
+            </a>
+
+            <a href="php/catalog.php?category=art" class="category-card">
+                <div class="cat-icon">🎨</div>
+                <span>Картины и арт-объекты</span>
+            </a>
+
+            <a href="php/catalog.php?category=cosmetics" class="category-card">
+                <div class="cat-icon">🧴</div>
+                <span>Косметика ручной работы</span>
+            </a>
+
+            <a href="php/catalog.php?category=food" class="category-card">
+                <div class="cat-icon">🍪</div>
+                <span>Еда и выпечка</span>
+            </a>
+
+            <a href="php/catalog.php?category=gifts" class="category-card">
+                <div class="cat-icon">🎁</div>
+                <span>Подарочные наборы</span>
+            </a>
+
+            <a href="php/catalog.php?category=tools" class="category-card">
+                <div class="cat-icon">🛠️</div>
+                <span>Инструменты и материалы</span>
+            </a>
+        </div>
+    </section>
+
 </main>
 <?php
 include 'php/main/footer.php';

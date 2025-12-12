@@ -42,13 +42,15 @@ if (isset($_SESSION['user_id'])) {
                                     <?= htmlspecialchars($item['price']) ?> BYN
                                 </p>
 
-                                <a href="<?= BASE_URL ?>php/Post/editPost.php?id=<?= $item['id'] ?>" class="btn_account">
-                                    Редактировать
-                                </a>
+                                <div class="button">
+                                    <a href="<?= BASE_URL ?>php/Post/editPost.php?id=<?= $item['id'] ?>" class="btn_account">
+                                        Редактировать
+                                    </a>
 
-                                <a href="<?= BASE_URL ?>php/Post/deletePost.php?id=<?= $item['id'] ?>" class="btn_account delete">
-                                    Удалить
-                                </a>
+                                    <a href="<?= BASE_URL ?>php/Post/deletePost.php?id=<?= $item['id'] ?>" class="btn_account delete">
+                                        Удалить
+                                    </a>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
