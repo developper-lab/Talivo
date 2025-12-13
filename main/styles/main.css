@@ -514,3 +514,30 @@ footer {
     font-size: 36px;
     margin-bottom: 10px;
 }
+
+/* ===== Хедер корзина ===== */
+.header-cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+#cart-count {
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    background: #d60000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}

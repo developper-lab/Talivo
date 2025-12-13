@@ -5,7 +5,6 @@ include 'main/header.php';
 
 $currentUser = $_SESSION['user_id'] ?? null;
 
-// сортировка
 $sort = $_GET['sort'] ?? 'popular';
 switch ($sort) {
     case 'cheap':
@@ -18,28 +17,23 @@ switch ($sort) {
         $orderBy = "rating DESC, count DESC";
 }
 
-// доставка
 $delivery = $_GET['delivery'] ?? 'all';
 
 $category = $_GET['category'] ?? '';
 
-// собираем условия
 $where = [];
 $params = [];
 
-// исключаем товары юзера
 if ($currentUser) {
     $where[] = "user_id != :uid";
     $params['uid'] = $currentUser;
 }
 
-// фильтр по доставке
 if ($delivery !== 'all') {
     $where[] = "delivery = :delivery";
     $params['delivery'] = $delivery;
 }
 
-// фильтр по категории
 if ($category) {
     $where[] = "category = :category";
     $params['category'] = $category;
@@ -129,7 +123,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="popular">
         <div class="popular__title">
-            <span>Популярное</span>
+            <span>Товары</span>
             <div class="dropdown">
                 <button class="dropdown-btn">
                     <span class="arrow">▼</span>
@@ -170,9 +164,12 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </span>
                             </div>
                             <button class="btn" type="submit" onclick="window.location.href='Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">
-                                Посмотреть товар
+                                Подробнее
                             </button>
-                            <button class="btn_add" type="submit" id="basket">
+                            <button
+                                class="btn_add add-to-basket"
+                                type="button"
+                                data-post-id="<?= $card['id'] ?>">
                                 Добавить в корзину
                             </button>
                         </div>
@@ -188,19 +185,16 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
     const dropdown = document.querySelector('.dropdown');
     const btn = document.querySelector('.dropdown-btn');
 
-    // Открыть меню
     btn.addEventListener('click', () => {
         dropdown.classList.toggle('active');
     });
 
-    // Закрыть при клике вне
     document.addEventListener('click', (e) => {
         if (!dropdown.contains(e.target)) {
             dropdown.classList.remove('active');
         }
     });
 
-    // Обработка клика по сортировке
     document.querySelectorAll('.dropdown-menu li').forEach(item => {
         item.addEventListener('click', () => {
             const sortType = item.getAttribute('data-sort');
@@ -220,7 +214,6 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
     });
 
 
-    // Скрываем/показываем остальные категории
     const moreBtn = document.querySelector('.more');
     const labels = document.querySelectorAll('.categories label');
 
@@ -232,10 +225,9 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
         moreBtn.textContent = moreBtn.textContent === "Показать еще" ? "Скрыть" : "Показать еще";
     });
 
-    // Фильтр по категориям
     labels.forEach(label => {
         label.addEventListener('click', () => {
-            const category = label.dataset.category; // пусто для "Все категории"
+            const category = label.dataset.category;
             const url = new URL(window.location.href);
             if (category) {
                 url.searchParams.set('category', category);

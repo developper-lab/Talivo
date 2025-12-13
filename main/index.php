@@ -5,7 +5,6 @@ include 'php/main/header.php';
 
 $currentUser = $_SESSION['user_id'] ?? null;
 
-// Если юзер авторизован — не показываем его товары
 if ($currentUser) {
     $sql = "SELECT * FROM posts 
             WHERE user_id != :uid 
@@ -14,7 +13,6 @@ if ($currentUser) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['uid' => $currentUser]);
 } else {
-    // Если гость — показываем всё как раньше
     $sql = "SELECT * FROM posts 
             ORDER BY rating DESC, count DESC 
             LIMIT 8";
@@ -42,7 +40,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="popular">
         <div class="popular__title">
-            <span>Популярное</span>
+            <span>Товары</span>
             <span class="arrow">›</span>
         </div>
 
@@ -69,9 +67,12 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </span>
                         </div>
                         <button class="btn" type="button" onclick="window.location.href='php/Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">
-                            Посмотреть товар
+                            Подробнее
                         </button>
-                        <button class="btn_add" type="button" id="basket">
+                        <button
+                            class="btn_add add-to-basket"
+                            type="button"
+                            data-post-id="<?= $card['id'] ?>">
                             Добавить в корзину
                         </button>
                     </div>

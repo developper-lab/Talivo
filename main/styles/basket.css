@@ -1,0 +1,125 @@
+/* ===== Корзина ===== */
+
+.basket {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.basket-item {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 16px;
+    align-items: center;
+
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 18px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.basket-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* Картинка */
+.basket-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: #f4f4f4;
+}
+
+/* Текст */
+.basket-item p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+.basket-item strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Кнопка удаления */
+.basket-item .remove {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+
+    background: #ffe5e5;
+    color: #d60000;
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.basket-item .remove:hover {
+    background: #ffcccc;
+    transform: scale(1.1);
+}
+
+/* ===== Итог ===== */
+
+.basket-total {
+    margin-top: 28px;
+    padding: 18px 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 18px;
+}
+
+.basket-total span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.basket-total strong {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+/* ===== Пустая корзина ===== */
+
+.basket-empty {
+    margin-top: 60px;
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+}
+
+/* ===== Адаптив ===== */
+
+@media (max-width: 600px) {
+    .basket-item {
+        grid-template-columns: 70px 1fr auto;
+        padding: 12px;
+    }
+
+    .basket-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .basket-total {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

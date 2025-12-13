@@ -1,0 +1,76 @@
+/* Общие стили страницы */
+.checkout-page {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.checkout-page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Стили формы */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.checkout-form input,
+.checkout-form select {
+    margin-top: 8px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Кнопка подтверждения */
+.checkout-form .btn.submit-order {
+    padding: 15px;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.checkout-form .btn.submit-order:hover {
+    background-color: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Адаптив */
+@media (max-width: 640px) {
+    .checkout-page {
+        margin: 20px;
+        padding: 20px;
+    }
+}

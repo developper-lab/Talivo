@@ -59,6 +59,7 @@
     </div>
 
 </footer>
+<script src="<?= BASE_URL ?>script/addBasket.js"></script>
 </body>
 
 </html>
