@@ -1,159 +1,435 @@
-/* ===== Основной контейнер формы ===== */
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 30px;
+.main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1f2937;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.cancel-link {
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 8px 16px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
 }
 
-/* ===== Лейблы ===== */
-label {
-    display: block;
-    margin-bottom: .3rem;
-    font-size: .9rem;
-    color: #6c757d;
+.cancel-link:hover {
+    color: #16a34a;
+    border-color: #16a34a;
 }
 
-/* ===== Инпуты ===== */
-input[type="text"],
-input[type="file"],
-textarea {
-    width: 100%;
-    padding: .5rem 1rem;
-    margin-top: 5px;
-    border-radius: .5rem;
-    border: 1px solid #dee2e6;
-    box-sizing: border-box;
+.post-form {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
 }
 
-/* ===== Зона загрузки картинки ===== */
-.upload-box {
-    margin-top: .5rem;
-    border: 2px dashed #dee2e6;
-    padding: 2rem;
-    border-radius: 1rem;
+.form-section {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.upload-label {
-    cursor: pointer;
-    color: #348e47;
-    font-weight: 600;
+.form-section:last-child {
+    border-bottom: none;
 }
 
-/* ===== Кнопка отправки ===== */
-button[type="submit"],
-.submit-btn {
-    width: 100%;
-    background-color: #28a745;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.form-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.form-section h3 {
     font-size: 16px;
-    margin-top: 10px;
-    transition: .3s;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111827;
 }
 
-button[type="submit"]:hover,
-.submit-btn:hover {
-    background-color: #218838;
+.section-description {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 20px;
 }
 
-/* ===== Кнопка "Назад" ===== */
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-    color: #007bff;
-    text-decoration: none;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
-.back-link:hover {
-    text-decoration: underline;
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
 }
 
-/* ===== Сообщения об ошибке / удаче ===== */
-.message {
-    max-width: 500px;
-    margin: 0 auto 20px;
-    padding: 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-align: center;
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    background: #f9fafb;
+    transition: all 0.2s ease;
+    color: #111827;
 }
 
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #16a34a;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
 
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
 }
 
-/* ===== Общий стиль ссылок ===== */
-a {
-    text-decoration: none;
-    color: black;
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
 }
 
-a:hover {
-    text-decoration: underline;
+.char-counter {
+    font-size: 12px;
+    color: #6b7280;
+    text-align: right;
+    margin-top: 4px;
 }
 
-/* ===== Стиль абзацев ===== */
-p {
-    text-align: center;
-    margin-top: 20px;
+.char-counter span {
+    font-weight: 600;
+    color: #16a34a;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.price-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.price-input input {
+    width: 100%;
+    padding-right: 60px;
+}
+
+.price-input .currency {
+    position: absolute;
+    right: 16px;
+    font-size: 14px;
+    color: #6b7280;
+    pointer-events: none;
 }
 
 .delivery-block {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+    padding-bottom: 20px;
 }
 
 .delivery-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px;
-    background: #f5f5f5;
-    border-radius: 8px;
+    padding: 16px;
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
     cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delivery-item:hover {
+    border-color: #d1fae5;
+    background: #f0fdf4;
 }
 
 .delivery-item input[type="radio"] {
-    transform: scale(1.3);
-}
-
-select[name="category"] {
-    width: 100%;
-    padding: 12px 14px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #dcdcdc;
-    background: #f8f8f8;
+    margin: 0;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
-    outline: none;
-    transition: .2s ease;
 }
 
-select[name="category"]:hover {
-    background: #f1f1f1;
+.delivery-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
 }
 
-select[name="category"]:focus {
-    border-color: #248A4C;
-    background: #fff;
-    box-shadow: 0 0 0 2px rgba(36, 138, 76, 0.2);
+.delivery-item input[type="radio"]:checked + span {
+    color: #16a34a;
 }
 
-select[name="category"] option {
-    padding: 10px;
+.delivery-item input[type="radio"]:checked {
+    accent-color: #16a34a;
+}
+
+.upload-container {
+    margin-top: 16px;
+}
+
+.upload-zone {
+    display: block;
+    border: 2px dashed #cfe7da;
+    border-radius: 16px;
+    padding: 48px 32px;
+    text-align: center;
+    cursor: pointer;
+    background: #f6fbf8;
+    transition: all 0.2s;
+}
+
+.upload-zone:hover,
+.upload-zone.highlight {
+    background: #edf7f2;
+    border-color: #16a34a;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.upload-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.upload-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.upload-text strong {
     font-size: 16px;
+    color: #111827;
+}
+
+.upload-text strong:after {
+    content: " или перетащите сюда";
+    font-weight: normal;
+    color: #6b7280;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.preview-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.preview-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-preview {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.remove-preview:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.btn {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 180px;
+    text-align: center;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+}
+
+.btn.ghost:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #111827;
+}
+
+.btn.primary {
+    background: #16a34a;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(22, 163, 74, 0.2);
+}
+
+.btn.primary:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+}
+
+.message {
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
+}
+
+.message.success {
+    background: #dcfce7;
+    color: #166534;
+    border-left: 4px solid #16a34a;
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 0 16px 30px;
+        margin: 20px auto;
+    }
+    
+    .post-form {
+        padding: 24px;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .delivery-block {
+        grid-template-columns: 1fr;
+    }
+    
+    .upload-zone {
+        padding: 32px 16px;
+    }
+    
+    .upload-text strong:after {
+        content: "";
+    }
 }
