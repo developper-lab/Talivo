@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 07 2025 г., 14:24
+-- Время создания: Дек 13 2025 г., 21:38
 -- Версия сервера: 8.3.0
 -- Версия PHP: 8.2.18
 
@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `basket`
+--
+
+DROP TABLE IF EXISTS `basket`;
+CREATE TABLE IF NOT EXISTS `basket` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `message`
 --
 
@@ -34,8 +49,65 @@ CREATE TABLE IF NOT EXISTS `message` (
   `receiver_id` int NOT NULL,
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` enum('chat','order') NOT NULL DEFAULT 'chat',
+  `order_id` int DEFAULT NULL,
+  `read_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `message`
+--
+
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`, `type`, `order_id`, `read_at`) VALUES
+(1, 1, 10, 'Спокойной ночи', '2025-12-11 22:07:12', 'chat', NULL, '2025-12-14 00:19:49'),
+(2, 10, 1, 'Спокойной', '2025-12-11 22:07:49', 'chat', NULL, '2025-12-14 00:29:35'),
+(3, 1, 3, 'Хочу купить товар: Домашняя выпечка: шоколадные кексы\nОплата: card\nДоставка: courier\nАдрес: dwdwdwdwвцвц\nТелефон: 80291751025', '2025-12-13 20:55:55', 'order', 3, '2025-12-14 00:28:35'),
+(4, 1, 10, 'Хочу купить товар: Картина маслом \"Горы\"\nОплата: cash\nДоставка: mail\nАдрес: dwdwdwdwвцвц\nТелефон: 80291751025', '2025-12-13 20:59:12', 'order', 4, '2025-12-14 00:19:49'),
+(5, 10, 3, 'Хочу купить товар: Домашняя выпечка: шоколадные кексы\nОплата: card\nДоставка: mail\nАдрес: dwdwdwdwвцвц\nТелефон: 80291751025', '2025-12-13 21:11:08', 'order', 5, '2025-12-14 00:28:39'),
+(6, 3, 10, 'Хочу купить товар: Ручная сумка из кожи\nОплата: Наличные\nДоставка: Почта\nАдрес: dwdwdwdwвцвц\nТелефон: 80291751025', '2025-12-13 21:13:07', 'order', 6, '2025-12-14 00:19:55'),
+(7, 10, 3, 'в', '2025-12-13 21:19:57', 'chat', NULL, '2025-12-14 00:28:39'),
+(8, 10, 1, 'ВВВВ', '2025-12-13 21:21:20', 'chat', NULL, '2025-12-14 00:29:35'),
+(9, 10, 1, 'вввввв', '2025-12-13 21:28:21', 'chat', NULL, '2025-12-14 00:29:35'),
+(10, 3, 10, 'В', '2025-12-13 21:28:42', 'chat', NULL, NULL),
+(11, 3, 1, 'ВВВ', '2025-12-13 21:28:55', 'chat', NULL, '2025-12-14 00:29:29'),
+(12, 3, 1, 'Хочу купить товар: Вязаный свитер из шерсти\nОплата: Наличные\nДоставка: Почта\nАдрес: dwdwdwdwвцвц\nТелефон: 80291751025', '2025-12-13 21:29:12', 'order', 7, '2025-12-14 00:29:29'),
+(13, 1, 3, 'ВВВВВВВВВ', '2025-12-13 21:32:13', 'chat', NULL, '2025-12-14 00:32:21'),
+(14, 3, 1, 'в', '2025-12-13 21:32:23', 'chat', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `buyer_id` int NOT NULL,
+  `seller_id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `delivery` varchar(50) DEFAULT NULL,
+  `payment` varchar(50) DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `buyer_id`, `seller_id`, `post_id`, `phone`, `address`, `delivery`, `payment`, `status`, `created_at`) VALUES
+(1, 1, 10, 13, '80291751025', 'dwdwdwdw', 'mail', 'cash', 'accepted', '2025-12-13 20:38:00'),
+(2, 10, 1, 2, '80291751025', 'dwdwdwdwвцвц', 'courier', 'cash', 'pending', '2025-12-13 20:48:00'),
+(3, 1, 3, 9, '80291751025', 'dwdwdwdwвцвц', 'courier', 'card', 'accepted', '2025-12-13 20:55:55'),
+(4, 1, 10, 13, '80291751025', 'dwdwdwdwвцвц', 'mail', 'cash', 'accepted', '2025-12-13 20:59:12'),
+(5, 10, 3, 9, '80291751025', 'dwdwdwdwвцвц', 'mail', 'card', 'accepted', '2025-12-13 21:11:08'),
+(6, 3, 10, 12, '80291751025', 'dwdwdwdwвцвц', 'mail', 'cash', 'accepted', '2025-12-13 21:13:07'),
+(7, 3, 1, 2, '80291751025', 'dwdwdwdwвцвц', 'mail', 'cash', 'accepted', '2025-12-13 21:29:12');
 
 -- --------------------------------------------------------
 
@@ -75,7 +147,7 @@ INSERT INTO `posts` (`id`, `title`, `description`, `category`, `delivery`, `pric
 (9, 'Домашняя выпечка: шоколадные кексы', 'Свежая, мягкая текстура, только натуральные ингредиенты.', 'food', 'today', 15.00, 'img_69357ebc6fd7b.jpg', 4.3, 4, 3),
 (10, 'Декоративная подушка с вышивкой', 'Ручная вышивка, 100% хлопок, добавит уюта вашему дому.', 'decor', '7', 22.00, 'img_69357ed7963be.jpg', 3.7, 3, 3),
 (11, 'Кухонная доска из дуба', 'Натуральное дерево, уникальная текстура, ручная обработка.', 'wood', '1-3', 40.00, 'img_693580575df01.jpg', 4.0, 3, 10),
-(12, 'Ручная сумка из кожи', 'Минималистичный дизайн, натуральная кожа, долговечная.', 'clothes', '7', 120.00, 'img_6935808908c46.jpg', 4.7, 3, 10),
+(12, 'Ручная сумка из кожи', 'Минималистичный дизайн, натуральная кожа, долговечная.', 'clothes', '7', 120.00, 'img_6935808908c46.jpg', 5.0, 4, 10),
 (13, 'Картина маслом \"Горы\"', 'Авторская работа, холст 50x70 см, уникальный подарок.', 'art', '7', 150.00, 'img_693580abdac99.jpg', 4.8, 5, 10),
 (14, 'Мыло ручной работы с медом', 'Натуральный состав, мягкое и увлажняющее, красивый аромат.', 'art', 'today', 10.00, 'img_693580d855fbc.jpg', 3.7, 3, 10);
 
@@ -96,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   PRIMARY KEY (`id`),
   KEY `post_id` (`post_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `reviews`
@@ -151,7 +223,8 @@ INSERT INTO `reviews` (`id`, `post_id`, `user_id`, `rating`, `comment`, `created
 (46, 13, 10, 5, 'Доставили быстро, работа превосходная.', '2025-12-07 14:06:03'),
 (47, 14, 10, 5, 'Мыло мягкое, запах меда приятный, натуральное.', '2025-12-07 14:06:03'),
 (48, 14, 1, 4, 'Хорошо увлажняет кожу.', '2025-12-07 14:06:03'),
-(49, 14, 3, 2, 'Запах не слишком насыщенный.', '2025-12-07 14:06:03');
+(49, 14, 3, 2, 'Запах не слишком насыщенный.', '2025-12-07 14:06:03'),
+(50, 12, 1, 5, 'ВЦВЦВЦЦВЦВВЦВЦЦВ', '2025-12-07 15:32:44');
 
 -- --------------------------------------------------------
 
@@ -170,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `users`
