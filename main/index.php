@@ -38,48 +38,7 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </section>
 
-    <section class="popular">
-        <div class="popular__title">
-            <span>Товары</span>
-            <span class="arrow">›</span>
-        </div>
 
-        <div class="cards">
-            <?php foreach ($cards as $card): ?>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="php/uploads/<?php echo htmlspecialchars($card['image']) ?>" alt="Товар">
-                    </div>
-                    <div class="card-body">
-                        <span class="price">
-                            <?php echo htmlspecialchars($card['price']) ?> BYN
-                        </span>
-                        <p class="title">
-                            <?php echo htmlspecialchars($card['title']) ?>
-                        </p>
-                        <div class="rating">
-                            <span class="star">★</span>
-                            <span class="rate">
-                                <?php echo htmlspecialchars($card['rating']) ?>
-                            </span>
-                            <span class="count">
-                                (отзывов: <?php echo htmlspecialchars($card['count']) ?>)
-                            </span>
-                        </div>
-                        <button class="btn" type="button" onclick="window.location.href='php/Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">
-                            Подробнее
-                        </button>
-                        <button
-                            class="btn_add add-to-basket"
-                            type="button"
-                            data-post-id="<?= $card['id'] ?>">
-                            Добавить в корзину
-                        </button>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
     <section class="categories-section">
         <h2 class="categories-title">Категории</h2>
 
@@ -135,6 +94,49 @@ $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </a>
         </div>
     </section>
+    <section class="popular">
+        <div class="popular__title">
+            <span>Товары</span>
+            <span class="arrow">›</span>
+        </div>
+
+        <div class="cards">
+            <?php foreach ($cards as $card): ?>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="php/uploads/<?php echo htmlspecialchars($card['image']) ?>" alt="Товар">
+                    </div>
+                    <div class="card-body">
+                        <span class="price">
+                            <?php echo htmlspecialchars($card['price']) ?> BYN
+                        </span>
+                        <p class="title">
+                            <?php echo htmlspecialchars($card['title']) ?>
+                        </p>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="rate">
+                                <?php echo htmlspecialchars($card['rating']) ?>
+                            </span>
+                            <span class="count">
+                                (отзывов: <?php echo htmlspecialchars($card['count']) ?>)
+                            </span>
+                        </div>
+                        <button class="btn" type="button" onclick="window.location.href='php/Post/post.php?id=<?php echo htmlspecialchars($card['id']) ?>'">
+                            Подробнее
+                        </button>
+                        <button
+                            class="btn_add add-to-basket"
+                            type="button"
+                            data-post-id="<?= $card['id'] ?>">
+                            Добавить в корзину
+                        </button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+
 
 </main>
 <?php

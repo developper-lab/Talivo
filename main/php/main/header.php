@@ -31,7 +31,6 @@ if (isset($_SESSION['user_id'])) {
     <title>Document</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/main.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/burger.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>styles/account.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>styles/adaptiv.css">
 
 

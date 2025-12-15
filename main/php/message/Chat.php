@@ -74,51 +74,240 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $partner_id) {
 
 include '../main/header.php';
 ?>
+<style>
+    /* Основной контейнер */
+    .chat-container {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        height: 80vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<h1>Чат</h1>
+    /* Левый aside с диалогами */
+    .chat-aside {
+        width: 280px;
+        background: #e6f4ea;
+        /* светло-зеленый фон */
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
+        border-left: 4px solid #22c55e;
+        /* зеленая акцентная полоска */
+    }
 
-<?php if ($partner_id): ?>
-    <?php
-    $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
-    $stmt->execute([$partner_id]);
-    $partnerName = $stmt->fetchColumn();
-    ?>
-    <h3>Переписка с <?= htmlspecialchars($partnerName ?: 'Пользователем #' . $partner_id) ?></h3>
+    /* Заголовок диалогов */
+    .dialogs-title {
+        margin-bottom: 12px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #065f46;
+        border-bottom: 1px solid #a7f3d0;
+        padding-bottom: 8px;
+    }
 
-    <div class="chat-window"
-        style="border:1px solid #ccc; padding:10px; max-height:400px; overflow-y:auto;">
-    </div>
+    /* Список диалогов */
+    .dialogs-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-    <form id="chat-form" style="display:flex; gap:10px; margin-top:15px;">
-        <input type="text" name="message" placeholder="Введите сообщение..." required
-            style="flex:1; padding:10px 15px; border:1px solid #ccc; border-radius:20px;">
-        <button type="submit"
-            style="background:#007bff; color:#fff; border:none; border-radius:20px; padding:10px 20px;">
-            Отправить
-        </button>
-    </form>
-<?php endif; ?>
+    .dialog-item {
+        margin-bottom: 10px;
+    }
 
-<hr>
+    .dialog-link {
+        display: block;
+        padding: 12px 16px;
+        background: #ffffff;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #065f46;
+        transition: 0.2s;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
 
-<h3>Мои диалоги</h3>
-<ul>
-    <?php foreach ($dialogData as $dialog): ?>
-        <li>
-            <a href="Chat.php?user_id=<?= $dialog['partner_id'] ?>">
-                <strong><?= htmlspecialchars($dialog['partner_name']) ?></strong>:
-                <?= htmlspecialchars(mb_strimwidth($dialog['last_message'], 0, 40, '...')) ?>
-                <?php if ($dialog['is_unread']): ?>
-                    <span style="color:red; font-weight:bold;">●</span>
-                <?php endif; ?>
-            </a>
-        </li>
-    <?php endforeach; ?>
-</ul>
+    .dialog-link:hover {
+        background: #d1fae5;
+        transform: translateX(4px);
+    }
+
+    .dialog-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dialog-name {
+        font-weight: 600;
+    }
+
+    .dialog-unread {
+        width: 10px;
+        height: 10px;
+        background: #16a34a;
+        border-radius: 50%;
+    }
+
+    .dialog-last {
+        margin-top: 4px;
+        font-size: 13px;
+        color: #065f46;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Правый main с перепиской */
+    .chat-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(to bottom, #f0fdf4, #e6f4ea);
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Заголовок чата */
+    .chat-header {
+        padding: 16px;
+        font-weight: 700;
+        border-bottom: 1px solid #d1fae5;
+        background: #22c55e;
+        /* насыщенный зеленый */
+        color: #fff;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+    }
+
+    /* Окно сообщений */
+    .chat-window {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        background: #f0fdf4;
+        /* светло-зеленый */
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Сообщения */
+    .msg {
+        max-width: 70%;
+        padding: 10px 14px;
+        border-radius: 14px;
+        animation: fadeIn 0.2s;
+        word-wrap: break-word;
+    }
+
+    .me {
+        align-self: flex-end;
+        background: #bbf7d0;
+        /* светлый зеленый для своих */
+    }
+
+    .other {
+        align-self: flex-start;
+        background: #d1fae5;
+        /* зеленый для чужих */
+    }
+
+    /* Форма отправки */
+    .chat-form {
+        display: flex;
+        gap: 10px;
+        padding: 12px;
+        border-top: 1px solid #d1fae5;
+        background: #e6f4ea;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+    }
+
+    .chat-input {
+        flex: 1;
+        padding: 12px 18px;
+        border-radius: 30px;
+        border: 1px solid #22c55e;
+        outline: none;
+        background: #fff;
+    }
+
+    .chat-send {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: none;
+        background: #16a34a;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    /* Анимация появления сообщений */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+<h1 class="container">Чат</h1>
+
+<div class="chat-container container">
+    <!-- Левый aside с диалогами -->
+    <aside class="chat-aside">
+        <h3 class="dialogs-title">Мои диалоги</h3>
+        <ul class="dialogs-list">
+            <?php foreach ($dialogData as $dialog): ?>
+                <li class="dialog-item">
+                    <a class="dialog-link" href="Chat.php?user_id=<?= $dialog['partner_id'] ?>">
+                        <div class="dialog-top">
+                            <strong class="dialog-name"><?= htmlspecialchars($dialog['partner_name']) ?></strong>
+                            <?php if ($dialog['is_unread']): ?>
+                                <span class="dialog-unread"></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="dialog-last">
+                            <?= htmlspecialchars(mb_strimwidth($dialog['last_message'], 0, 40, '…')) ?>
+                        </div>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </aside>
+
+    <!-- Правый main с перепиской -->
+    <main class="chat-main">
+        <?php if ($partner_id): ?>
+            <?php
+            $stmt = $pdo->prepare("SELECT username FROM users WHERE id=?");
+            $stmt->execute([$partner_id]);
+            $partnerName = $stmt->fetchColumn();
+            ?>
+            <div class="chat-header"><?= htmlspecialchars($partnerName ?: 'Пользователь') ?></div>
+            <div class="chat-window" id="chatWindow"></div>
+            <form id="chatForm" class="chat-form">
+                <input class="chat-input" name="message" placeholder="Сообщение..." required>
+                <button class="chat-send">➤</button>
+            </form>
+        <?php else: ?>
+            <div class="chat-header">Выбери диалог</div>
+        <?php endif; ?>
+    </main>
+</div>
+
 
 <script>
     const chatWindow = document.querySelector('.chat-window');
-    const chatForm = document.getElementById('chat-form');
+    const chatForm = document.getElementById('chatForm');
     const partnerId = <?= json_encode($partner_id) ?>;
     const userId = <?= json_encode($user_id) ?>;
 

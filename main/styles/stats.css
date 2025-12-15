@@ -1,0 +1,10 @@
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stats-table th,
+.stats-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
